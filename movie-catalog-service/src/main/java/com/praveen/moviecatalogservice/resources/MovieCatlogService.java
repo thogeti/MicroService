@@ -19,7 +19,7 @@ import com.praveen.moviecatalogservice.models.UserRating;
 @RestController
 @RequestMapping("/catlog")
 public class MovieCatlogService {
-
+//check
 	@Autowired
 	private RestTemplate restTemplate;
 	@RequestMapping("/{userId}")
