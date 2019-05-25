@@ -31,10 +31,12 @@ public class MovieCatlogService {
 		/*List<Rating> ratings= Arrays.asList(
 					new Rating("1234",3),
 				new Rating("1244",4));*/
-UserRating ratings= restTemplate.getForObject("http://localhost:8083/ratingsdata/users/"+userId,UserRating.class);
+//UserRating ratings= restTemplate.getForObject("http://localhost:8083/ratingsdata/users/"+userId,UserRating.class);
+		UserRating ratings= restTemplate.getForObject("http://RATING-DATA-SERVICE/ratingsdata/users/"+userId,UserRating.class);
 		//for each movie id call movie info service and get the details
 		return ratings.getUserRating().stream().map(rating ->{
-			Movie movie=restTemplate.getForObject("http://localhost:8082/movies/"+rating.getMovieId(),Movie.class);
+			//Movie movie=restTemplate.getForObject("http://localhost:8082/movies/"+rating.getMovieId(),Movie.class);
+			Movie movie=restTemplate.getForObject("http://MOVIE-INFO-SERVICE/movies/"+rating.getMovieId(),Movie.class);
 			//put them together
 			return new CatlogItem(movie.getName(),"GOOD",rating.getRating() );
 		}
